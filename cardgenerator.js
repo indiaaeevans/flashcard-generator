@@ -4,32 +4,36 @@ var inquirer = require('inquirer');
 
 // use our constructors to create a set of flashcards
 // BASIC FLASHCARDS
-var arrayBasic = [new basic("What is the capital of NY?", "NYC"), new basic("What is the capital of NC?", "Raleigh")];
+var arrayBasic = [new basic("What is the world's longest river?", "Amazon"), new basic("What is the world's largest ocean?", "Pacific"), new basic("What sensory organ do starfish have at the end of each arm?", "eye")];
 
 // CLOZE FLASHCARDS
-var arrayCloze = [new cloze("NYC is the capital of NY.", "NYC"), new cloze("Raleigh is the capital of NC.", "Raleigh")];
+var arrayCloze = [new cloze("The Amazon is the world's longest river.", "Amazon"), new cloze("The Pacific is the world's largest ocean.", "Pacific"), new cloze("Starfish have an eye at the end of each arm.", "eye")];
 
-inquirer.prompt([
+function selectType(){
+	inquirer.prompt([
 
-// Ask the user what type of cards they want to study
-  {
-    type: "list",
-    message: "What type of flashcards would you like to study with?",
-    choices: ["Basic", "Cloze"],
-    name: "type"
-  },
+	// Ask the user what type of cards they want to study
+	  {
+	    type: "list",
+	    message: "What type of flashcards would you like to study with?",
+	    choices: ["Basic", "Cloze"],
+	    name: "type"
+	  },
 
-// Once user selects the type...
-]).then(function(answer) {
-	console.log("==============================================");
-  	// If the user chooses basic cards, then we will test them with the basic cards
-  	// If the user chooses cloze cards, then we will test them with cloze cards
-  	if (answer.type === "Basic") {
-    	askquestionBasic();
-  	} else {
-  		askquestionCloze();
-  	}
-});
+	// Once user selects the type...
+	]).then(function(answer) {
+		console.log("==============================================");
+	  	// If the user chooses basic cards, then we will test them with the basic cards
+	  	// If the user chooses cloze cards, then we will test them with cloze cards
+	  	if (answer.type === "Basic") {
+	    	askquestionBasic();
+	  	} else {
+	  		askquestionCloze();
+	  	}
+	});
+}
+
+selectType();
 
 // counter so that we can track which question we are on
 var i = 0;
@@ -61,6 +65,7 @@ var askquestionBasic = function(){
 	// if all of the questions are answered		
 	} else {
 		console.log("You have completed the quiz.");
+		selectType();
 	}
 }
 
@@ -94,5 +99,6 @@ var askquestionCloze = function(){
 	// if all of the questions are answered	
 	} else {
 		console.log("You have completed the quiz.");
+		selectType();
 	}
 }
