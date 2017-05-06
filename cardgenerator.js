@@ -1,13 +1,26 @@
 var basic = require('./BasicCard.js');
+var basicCards = require('./basic.json');
 var cloze = require('./ClozeCard.js');
+var clozeCards = require('./cloze.json');
 var inquirer = require('inquirer');
 
-// use our constructors to create a set of flashcards
+// use our constructors and json files to create sets of flashcards
+
 // BASIC FLASHCARDS
-var arrayBasic = [new basic("What is the world's longest river?", "Amazon"), new basic("What is the world's largest ocean?", "Pacific"), new basic("What sensory organ do starfish have at the end of each arm?", "eye")];
+var arrayBasic = [];
+for (let i=0; i < basicCards.randomTrivia.length; i++){
+	var newBasic = new basic(basicCards.randomTrivia[i].front, basicCards.randomTrivia[i].back);
+	arrayBasic.push(newBasic);
+}
+// var arrayBasic = [new basic("What is the world's longest river?", "Amazon"), new basic("What is the world's largest ocean?", "Pacific"), new basic("What sensory organ do starfish have at the end of each arm?", "eye")];
 
 // CLOZE FLASHCARDS
-var arrayCloze = [new cloze("The Amazon is the world's longest river.", "Amazon"), new cloze("The Pacific is the world's largest ocean.", "Pacific"), new cloze("Starfish have an eye at the end of each arm.", "eye")];
+var arrayCloze = [];
+for (let i=0; i < clozeCards.randomTrivia.length; i++){
+	var newCloze = new cloze(clozeCards.randomTrivia[i].fullText, clozeCards.randomTrivia[i].cloze);
+	arrayCloze.push(newCloze);
+}
+// var arrayCloze = [new cloze("The Amazon is the world's longest river.", "Amazon"), new cloze("The Pacific is the world's largest ocean.", "Pacific"), new cloze("Starfish have an eye at the end of each arm.", "eye")];
 
 function selectType(){
 	inquirer.prompt([
@@ -65,6 +78,7 @@ var askquestionBasic = function(){
 	// if all of the questions are answered		
 	} else {
 		console.log("You have completed the quiz.");
+		console.log("==============================================");
 		selectType();
 	}
 }

@@ -1,0 +1,16 @@
+{
+	"randomTrivia":[
+		{
+			"fullText":"The Amazon is the world's longest river.",
+			"cloze":"Amazon"
+		},
+		{
+			"fullText":"The Pacific is the world's largest ocean.",
+			"cloze":"Pacific"
+		},
+		{
+			"fullText":"Starfish have an eye at the end of each arm.",
+			"cloze":"eye"
+		}
+	]
+}
