@@ -48,10 +48,10 @@ var askquestionBasic = function(){
 		    message: arrayBasic[i].front,
 		    name: "front"
 	  	},
-		// check if they are correct, and then show the correct answer
+		// check if user's answer is correct, and then show the correct answer
 		]).then(function(answer) {
 			
-		  	if (answer.front === arrayBasic[i].back){
+		  	if (answer.front.toLowerCase() === arrayBasic[i].back.toLowerCase()){
 		  		console.log(answer.front + " is correct!");
 		  	} else {
 		  		console.log(answer.front + " is not correct!");
@@ -84,7 +84,7 @@ var askquestionCloze = function(){
 	  	},
 		// check if they are correct, and then show the correct answer
 		]).then(function(answer) {
-		  	if (answer.partial === arrayCloze[counter].cloze){
+		  	if (answer.partial.toLowerCase() === arrayCloze[counter].cloze.toLowerCase()){
 		  		console.log("You are correct!");
 		  		console.log(arrayCloze[counter].fullText);
 		  	} else {
